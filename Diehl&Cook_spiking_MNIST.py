@@ -453,8 +453,8 @@ while j < (int(num_examples)):
         rates = training['x'][j%60000,:,:].reshape((n_input)) / 8. *  input_intensity
     input_groups['Xe'].rate = rates
 #     print 'run number:', j+1, 'of', int(num_examples)
-    b.run(single_example_time, report='text')
-            
+    b.run(single_example_time, report=None)
+
     if j % update_interval == 0 and j > 0:
         # work out which excitory neuron corresponds (has highest rate) for which label
         assignments = get_new_assignments(result_monitor[:], input_numbers[j-update_interval : j])
