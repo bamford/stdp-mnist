@@ -213,15 +213,15 @@ test_mode = True
 b.set_global_preferences(
                         defaultclock = b.Clock(dt=0.5*b.ms), # The default clock to use if none is provided or defined in any enclosing scope.
                         useweave = True, # Defines whether or not functions should use inlined compiled C code where defined.
-                        gcc_options = ['-ffast-math -march=native'],  # Defines the compiler switches passed to the gcc compiler. 
-                        #For gcc versions 4.2+ we recommend using -march=native. By default, the -ffast-math optimizations are turned on 
+                        gcc_options = ['-march=native'],  # Defines the compiler switches passed to the gcc compiler.
+                        #For gcc versions 4.2+ we recommend using -march=native. By default, the -ffast-math optimizations are turned on
                         usecodegen = True,  # Whether or not to use experimental code generation support.
                         usecodegenweave = True,  # Whether or not to use C with experimental code generation support.
                         usecodegenstateupdate = True,  # Whether or not to use experimental code generation support on state updaters.
                         usecodegenthreshold = False,  # Whether or not to use experimental code generation support on thresholds.
                         usenewpropagate = True,  # Whether or not to use experimental new C propagation functions.
                         usecstdp = True,  # Whether or not to use experimental new C STDP.
-                       ) 
+                       )
 
 
 np.random.seed(0)
