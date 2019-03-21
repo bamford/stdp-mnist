@@ -167,6 +167,7 @@ def update_performance_plot(im, performance, current_example_num, fig):
     return im, performance
 
 def get_recognized_number_ranking(assignments, spike_rates):
+    # figures out the rank of classes for a single input (via spike rate)
     summed_rates = [0] * 10
     num_assignments = [0] * 10
     for i in xrange(10):
@@ -455,6 +456,7 @@ while j < (int(num_examples)):
     b.run(single_example_time, report='text')
             
     if j % update_interval == 0 and j > 0:
+        # work out which excitory neuron corresponds (has highest rate) for which label
         assignments = get_new_assignments(result_monitor[:], input_numbers[j-update_interval : j])
     if j % weight_update_interval == 0 and not test_mode:
         update_2d_input_weights(input_weight_monitor, fig_weights)
@@ -469,6 +471,7 @@ while j < (int(num_examples)):
         for i,name in enumerate(input_population_names):
             input_groups[name+'e'].rate = 0
         b.run(resting_time)
+        # note that j not updated - will rerun same image next time with higher intensity
     else:
         result_monitor[j%update_interval,:] = current_spike_count
         if test_mode and use_testing_set:
