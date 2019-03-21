@@ -484,7 +484,7 @@ while j < (int(num_examples)):
         if j % update_interval == 0 and j > 0:
             if do_plot_performance:
                 unused, performance = update_performance_plot(performance_monitor, performance, j, fig_performance)
-                print 'Classification performance', performance[:(j/float(update_interval))+1]
+                print 'Classification performance', performance[:int(j/float(update_interval))+1]
         for i,name in enumerate(input_population_names):
             input_groups[name+'e'].rate = 0
         b.run(resting_time)
@@ -512,7 +512,7 @@ if rate_monitors:
     b.figure(fig_num)
     fig_num += 1
     for i, name in enumerate(rate_monitors):
-        b.subplot(len(rate_monitors), 1, i)
+        b.subplot(len(rate_monitors), 1, i+1)
         b.plot(rate_monitors[name].times/b.second, rate_monitors[name].rate, '.')
         b.title('Rates of population ' + name)
 
@@ -520,7 +520,7 @@ if spike_monitors:
     b.figure(fig_num)
     fig_num += 1
     for i, name in enumerate(spike_monitors):
-        b.subplot(len(spike_monitors), 1, i)
+        b.subplot(len(spike_monitors), 1, i+1)
         b.raster_plot(spike_monitors[name])
         b.title('Spikes of population ' + name)
 
@@ -528,7 +528,7 @@ if spike_counters:
     b.figure(fig_num)
     fig_num += 1
     for i, name in enumerate(spike_counters):
-        b.subplot(len(spike_counters), 1, i)
+        b.subplot(len(spike_counters), 1, i+1)
         b.plot(spike_counters['Ae'].count[:])
         b.title('Spike count of population ' + name)
 
